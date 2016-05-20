@@ -3,16 +3,12 @@ package com.minelittlepony.minelp.hdskins.gui;
 
 import com.minelittlepony.minelp.Pony;
 import com.minelittlepony.minelp.PonyManager;
-import com.minelittlepony.minelp.model.ModelPlayer;
 import com.minelittlepony.minelp.model.PMAPI;
 import com.minelittlepony.minelp.model.PlayerModel;
 import com.thevoxelbox.hdskins.gui.EntityPlayerModel;
 import com.thevoxelbox.hdskins.gui.RenderPlayerModel;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
 
 public class RenderPonyModel
 extends RenderPlayerModel {
@@ -34,6 +30,9 @@ extends RenderPlayerModel {
         pm.model.isVillager = false;
         pm.model.StylesofMane = thePony.StylesofMane;
         pm.model.isRainboomTail = thePony.RainboomTail;
+        pm.model.isKirin = thePony.isKirin();
+        pm.model.isGriffin = thePony.isGriffin();
+
         this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, 1.0f);
     }
 

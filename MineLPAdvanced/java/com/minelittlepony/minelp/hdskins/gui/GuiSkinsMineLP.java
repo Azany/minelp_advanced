@@ -1,14 +1,8 @@
 package com.minelittlepony.minelp.hdskins.gui;
 
-import com.minelittlepony.minelp.MineLittlePony;
-import com.minelittlepony.minelp.Pony;
 import com.minelittlepony.minelp.PonyManager;
-import com.minelittlepony.minelp.hdskins.gui.EntityPonyModel;
 import com.minelittlepony.minelp.util.MineLPLogger;
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.exceptions.AuthenticationException;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mumfrey.liteloader.util.log.LiteLoaderLogger;
 import com.thevoxelbox.common.util.upload.IUploadCompleteCallback;
 import com.thevoxelbox.common.util.upload.ThreadMultipartPostUpload;
@@ -17,45 +11,31 @@ import com.thevoxelbox.common.util.upload.awt.ThreadOpenFilePNG;
 import com.thevoxelbox.hdskins.gui.EntityPlayerModel;
 import com.thevoxelbox.hdskins.mod.HDSkinsModCore;
 import com.thevoxelbox.voxelmenu.IPanoramaRenderer;
-import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Proxy;
-import java.net.URL;
-import java.nio.Buffer;
-import java.nio.DoubleBuffer;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
+import net.inkyquill.litemods.minelp.GlobalSettings;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Session;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.DoubleBuffer;
+import java.util.HashMap;
+import java.util.List;
 
 public class GuiSkinsMineLP
 extends GuiScreen
@@ -66,7 +46,6 @@ IPanoramaRenderer {
     private static final int MAX_SKIN_DIMENSION = 8192;
    // private static final File legacySkinFile = new File(System.getenv("TEMP"), "legacySkinMineLP.png");
    private static final String skinServerId = "7853dfddc358333843ad55a2c7485c4aa0380a51";
-    private static final ResourceLocation[] cubemapTextures = new ResourceLocation[]{new ResourceLocation("hdskins", "textures/cubemaps/cubemap0_0.png"), new ResourceLocation("hdskins", "textures/cubemaps/cubemap0_1.png"), new ResourceLocation("hdskins", "textures/cubemaps/cubemap0_2.png"), new ResourceLocation("hdskins", "textures/cubemaps/cubemap0_3.png"), new ResourceLocation("hdskins", "textures/cubemaps/cubemap0_4.png"), new ResourceLocation("hdskins", "textures/cubemaps/cubemap0_5.png")};
 
     private int updateCounter = 0;
     private ResourceLocation viewportTexture;

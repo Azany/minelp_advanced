@@ -232,6 +232,8 @@ public class Pony {
         this.isUnicorn = false;
         this.isPonySkin = false;
         this.isMale = false;
+        this.isKirin = false;
+        this.isGriffin = false;
         this.wantTail = 0;
         this.size = 1;
         this.StylesofMane = 0;
@@ -265,6 +267,10 @@ public class Pony {
     public boolean isMale() {
         return this.isMale;
     }
+
+    public boolean isKirin() {return this.isKirin;}
+
+    public boolean isGriffin() { return this.isGriffin;}
 
     public int size() {
         if (ponyManager.getUseSizes() == 1) {

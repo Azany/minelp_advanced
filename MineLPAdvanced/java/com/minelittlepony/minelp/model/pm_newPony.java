@@ -34,6 +34,19 @@ public class pm_newPony
             this.LeftExtMane[var1] = new PlaneRenderer(this, 56, 0);
         }
         this.helmet = new ModelRenderer(this, 32, 0);
+
+
+        //!Kirin
+        for(int i = 0; i<this.KirinHorns.length; ++i)
+            this.KirinHorns[i] = new PlaneRenderer(this,56,24);
+
+        for(int i = 0; i<this.KirinMoustache.length; ++i) {
+            this.KirinMoustache[i] = new PlaneRenderer(this, 38, 0);
+            if(i>2)
+                this.KirinMoustache[i].mirror=true;
+        }
+
+
     }
 
     @Override

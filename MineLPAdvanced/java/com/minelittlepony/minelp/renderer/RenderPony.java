@@ -216,8 +216,8 @@ public class RenderPony
         this.playerModel.armor.modelArmorChestplate.isSleeping = this.playerModel.model.isSleeping;
         this.playerModel.armor.modelArmorChestplate.swingProgress = this.playerModel.armor.modelArmor.swingProgress = this.playerModel.model.swingProgress;
         this.playerModel.model.wantTail = thePony.wantTail();
-        this.playerModel.model.isKirin = thePony.isKirin;
-        this.playerModel.model.isGriffin = thePony.isGriffin;
+        this.playerModel.model.isKirin = thePony.isKirin();
+        this.playerModel.model.isGriffin = thePony.isGriffin();
         this.playerModel.model.isRainboomTail = thePony.RainboomTail;
         this.playerModel.model.StylesofMane = thePony.StylesofMane;
         this.playerModel.model.isVillager = false;

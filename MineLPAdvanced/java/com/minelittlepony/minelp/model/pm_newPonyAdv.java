@@ -133,8 +133,6 @@ public class pm_newPonyAdv
     //<==== STOP!
 
     //! Kirin additions.
-    public boolean isKirin = false;
-    public boolean isGriffin = false;
     public PlaneRenderer[] KirinHorns;
     public PlaneRenderer[] KirinMoustache;
     public PlaneRenderer[] KirinTail;
@@ -1409,6 +1407,7 @@ public class pm_newPonyAdv
         for (ModelRenderer aMane : this.Mane) {
             aMane.render(this.scale);
         }
+        if(!isGriffin)
         switch (this.StylesofMane) {
             case 1: {
                 for (ModelRenderer aIrokeeze : this.Irokeeze) {

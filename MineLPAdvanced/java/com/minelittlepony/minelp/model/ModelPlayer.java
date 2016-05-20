@@ -80,7 +80,8 @@ public abstract class ModelPlayer
     protected float scale = 0.0625f;
     public int StylesofMane;
     public boolean isRainboomTail;
-
+    public boolean isKirin;
+    public boolean isGriffin;
 
     public ModelPlayer(String texture) {
     }

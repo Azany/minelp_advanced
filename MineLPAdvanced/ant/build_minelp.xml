@@ -4,7 +4,7 @@
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 
 	<!-- Versions !!IMPORTANT -->
-	<property name="version" value="1710.0.0.1" />
+	<property name="version" value="1710.2" />
 	<property name="mcversion" value="1.7.10" />
 	<property name="litemodversion" value="1.7.10" />
 	<property name="author" value="InkyQuill, Verdana, Rene_Z, Mumfrey" />

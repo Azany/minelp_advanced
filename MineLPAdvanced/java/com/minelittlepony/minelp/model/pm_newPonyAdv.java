@@ -132,6 +132,15 @@ public class pm_newPonyAdv
 
     //<==== STOP!
 
+    //! Kirin additions.
+    public boolean isKirin = false;
+    public boolean isGriffin = false;
+    public PlaneRenderer[] KirinHorns;
+    public PlaneRenderer[] KirinMoustache;
+    public PlaneRenderer[] KirinTail;
+    //<==== STOP!
+
+
 
     public pm_newPonyAdv(String texture) {
         super(texture);
@@ -193,6 +202,9 @@ public class pm_newPonyAdv
         for (int j1 = 0; j1 < this.tailstop; ++j1) {
             this.Tail[j1].rotateAngleY = bodySwingRotation;
         }
+        for (int j1 = 0; j1 < this.KirinTail.length; ++j1) {
+            this.KirinTail[j1].rotateAngleY = bodySwingRotation;
+        }
         this.setLegs(aniparams.move, aniparams.swing, aniparams.tick);
         this.holdItem();
         this.swingItem(this.swingProgress);
@@ -235,6 +247,11 @@ public class pm_newPonyAdv
                 this.setRotationPoint(this.Tail[k6], this.TAIL_RP_X, this.TAIL_RP_Y, this.TAIL_RP_Z_NOTSNEAK);
                 this.Tail[k6].rotateAngleX = this.rainboom ? this.ROTATE_90 + 0.1f * MathHelper.sin(aniparams.move) : 0.5f * aniparams.swing;
             }
+            for(int i = 0; i<this.KirinTail.length; ++i)
+            {
+                this.setRotationPoint(this.KirinTail[i], this.TAIL_RP_X, this.TAIL_RP_Y, this.TAIL_RP_Z_NOTSNEAK);
+                this.KirinTail[i].rotateAngleX = this.rainboom ? this.ROTATE_90 + 0.1f * MathHelper.sin(aniparams.move) : 0.5f * aniparams.swing;
+            }
             if (!this.rainboom) {
                 this.swingTailX(aniparams.tick);
                 this.swingExtManeX(aniparams.tick);
@@ -250,6 +267,10 @@ public class pm_newPonyAdv
             for (int k1 = 0; k1 < this.tailstop; ++k1) {
                 this.Tail[k1].rotationPointY += 6.0f;
                 this.Tail[k1].rotationPointZ += 1.0f;
+            }
+            for (int k1 = 0; k1 < this.KirinTail.length; ++k1) {
+                this.KirinTail[k1].rotationPointY += 6.0f;
+                this.KirinTail[k1].rotationPointZ += 1.0f;
             }
         }
         this.fixSpecialRotations();
@@ -306,9 +327,17 @@ public class pm_newPonyAdv
         for (int var5 = 0; var5 < this.LeftExtMane.length; ++var5) {
             this.setRotationPoint(this.LeftExtMane[var5], posX, posY, posZ);
         }
+
+        for (int var5 = 0; var5 < this.KirinHorns.length; ++var5) {
+            this.setRotationPoint(this.KirinHorns[var5], posX, posY, posZ);
+        }
+
         if (this.isMale) {
             for (j6 = 0; j6 < this.MuzzleMale.length; ++j6) {
                 this.setRotationPoint(this.MuzzleMale[j6], posX, posY, posZ);
+            }
+            for (j6 = 0; j6 < this.KirinMoustache.length; ++j6) {
+                this.setRotationPoint(this.KirinMoustache[j6], posX, posY, posZ);
             }
         } else {
             for (j6 = 0; j6 < this.MuzzleFemale.length; ++j6) {
@@ -382,6 +411,20 @@ public class pm_newPonyAdv
         this.Irokeeze[0].rotateAngleX = headRotateAngleX - 1.469856f;
         this.Irokeeze[1].rotateAngleX = headRotateAngleX - 1.719511f;
         this.Irokeeze[2].rotateAngleX = headRotateAngleX + 3.067235f;
+
+        for(int v1 = 0; v1<this.KirinHorns.length; ++v1)
+        {
+            this.KirinHorns[v1].rotateAngleX = headRotateAngleX;
+            this.KirinHorns[v1].rotateAngleY = headRotateAngleY;
+        }
+
+
+        for(int v1 = 0; v1<this.KirinMoustache.length; ++v1)
+        {
+            this.KirinMoustache[v1].rotateAngleX = headRotateAngleX;
+            this.KirinMoustache[v1].rotateAngleY = headRotateAngleY;
+        }
+
     }
 
     protected void setLegs(float move, float swing, float tick) {
@@ -576,6 +619,12 @@ public class pm_newPonyAdv
         for (int j = 0; j < this.tailstop; ++j) {
             this.Tail[j].rotateAngleZ = this.rainboom ? 0.0f : MathHelper.cos(move * 0.8f) * 0.2f * swing;
         }
+
+        for(int i = 0; i<this.KirinTail.length; ++i)
+        {
+            this.KirinTail[i].rotateAngleZ = this.rainboom ? 0.0f : MathHelper.cos(move * 0.8f) * 0.2f * swing;
+        }
+
     }
 
     protected void swingTailX(float tick) {
@@ -587,6 +636,10 @@ public class pm_newPonyAdv
         }
         for (int l6 = 0; l6 < this.tailstop; ++l6) {
             this.Tail[l6].rotateAngleX += sinTickFactor;
+        }
+        for(int i = 0; i<this.KirinTail.length; ++i)
+        {
+            this.KirinTail[i].rotateAngleX-=sinTickFactor;
         }
     }
 
@@ -778,6 +831,13 @@ public class pm_newPonyAdv
             this.setRotationPoint(this.Tail[i7], this.TAIL_RP_X, this.TAIL_RP_Y, this.TAIL_RP_Z_SNEAK);
             this.Tail[i7].rotateAngleX = 0.0f;
         }
+
+
+        for (int i7 = 0; i7 < this.KirinTail.length; ++i7) {
+            this.setRotationPoint(this.KirinTail[i7], this.TAIL_RP_X, this.TAIL_RP_Y+1, this.TAIL_RP_Z_SNEAK-1);
+            this.KirinTail[i7].rotateAngleX = 0.5f;
+
+        }
     }
 
     protected void ponySleep() {
@@ -892,8 +952,18 @@ public class pm_newPonyAdv
                 this.Tail[var3].rotateAngleX = -0.5f;
                 this.Tail[var3].rotateAngleZ = -1.1f;
             }
+
+            for (var3 = 0; var3 < this.KirinTail.length; ++var3) {
+                this.KirinTail[var3].rotationPointX = -3.5f;
+                this.KirinTail[var3].rotationPointY = 12.0f + var2;
+                this.KirinTail[var3].rotationPointZ += 2.0f + var1;
+
+                //??
+                this.KirinTail[var3].rotateAngleX -= 0.5f;
+                this.KirinTail[var3].rotateAngleZ -= 1.1f;
+            }
         }
-        this.Bodypiece[5].rotateAngleX += 0.4f;
+        this.Bodypiece[10].rotateAngleX += 0.4f;
         this.Bodypiece[6].rotateAngleX += 0.4f;
         this.Bodypiece[7].rotateAngleX += 0.4f;
         this.Bodypiece[8].rotateAngleX += 0.4f;
@@ -901,7 +971,7 @@ public class pm_newPonyAdv
     }
 
     protected void aimBow(float tick) {
-        if (this.isUnicorn && this.glowColor != 0) {
+        if ((this.isUnicorn || this.isKirin) && this.glowColor != 0) {
             this.aimBowUnicorn(tick);
         } else {
             this.aimBowPony(tick);
@@ -996,15 +1066,24 @@ public class pm_newPonyAdv
         this.RightWingExt[2].rotateAngleX -= 0.75f;
         this.RightWingExt[3].rotateAngleX -= 0.5f;
         this.RightWingExt[5].rotateAngleX -= 0.85f;
-        this.Bodypiece[5].rotateAngleX += 0.5f;
+        this.Bodypiece[10].rotateAngleX += 0.5f;
         this.Bodypiece[6].rotateAngleX += 0.5f;
         this.Bodypiece[7].rotateAngleX += 0.5f;
         this.Bodypiece[8].rotateAngleX += 0.5f;
         this.Bodypiece[9].rotateAngleX += 0.5f;
-        //this.Bodypiece[10].rotateAngleX += 0.5f;
-        //this.Bodypiece[11].rotateAngleX += 0.5f;
-        //this.Bodypiece[12].rotateAngleX += 0.5f;
-        //this.Bodypiece[13].rotateAngleX += 0.5f;
+
+        this.KirinTail[0].rotateAngleX +=1.0472f;
+        this.KirinTail[3].rotateAngleX +=1.0472f;
+        this.KirinTail[8].rotateAngleX +=1.0472f;
+        this.KirinTail[9].rotateAngleX +=1.0472f;
+        this.KirinTail[12].rotateAngleX +=1.0472f;
+        this.KirinTail[13].rotateAngleX +=1.0472f;
+        this.KirinTail[14].rotateAngleX +=1.0472f;
+        this.KirinTail[15].rotateAngleX +=1.0472f;
+        this.KirinTail[1].rotateAngleX+=1.0472f;
+        this.KirinTail[2].rotateAngleX+=1.0472f;
+        this.KirinTail[10].rotateAngleX+=1.0472f;
+        this.KirinTail[11].rotateAngleX+=1.0472f;
     }
 
     protected void fixSpecialRotationPoints(float move) {
@@ -1358,6 +1437,13 @@ public class pm_newPonyAdv
             }
         }
 
+        if(this.isKirin && this.isMale)
+        {
+            for (int g = 0; g<this.KirinMoustache.length; ++g) {
+                this.KirinMoustache[g].render(this.scale);
+            }
+        }
+
         this.helmet.render(this.scale);
     }
 
@@ -1378,6 +1464,12 @@ public class pm_newPonyAdv
                 GL11.glColor4f(red, green, blue, 0.2f);
                 this.hornglow[1].render(this.scale);
                 GL11.glPopAttrib();
+            }
+        }
+
+        if(this.isKirin){
+            for (int i = 0; i<this.KirinHorns.length; ++i) {
+                this.KirinHorns[i].render(this.scale);
             }
         }
     }
@@ -1402,7 +1494,7 @@ public class pm_newPonyAdv
     protected void renderBody() {
         int j;
         this.Body.render(this.scale);
-        for (j = 0; j < this.Bodypiece.length; ++j) {
+        for (j = 0; j < this.Bodypiece.length-5; ++j) {
             this.Bodypiece[j].render(this.scale);
         }
         if (!this.isPegasus) return;
@@ -1429,12 +1521,26 @@ public class pm_newPonyAdv
     }
 
     protected void renderTail() {
-        int tailstop = this.Tail.length - this.wantTail * 5;
-        if (tailstop <= 1) {
-            tailstop = 0;
+        if(!isKirin && !isGriffin) {
+            for (int j = 6; j < this.Bodypiece.length; ++j) {
+                this.Bodypiece[j].render(this.scale);
+            }
+            int tailstop = this.Tail.length - this.wantTail * 5;
+            if (tailstop <= 1) {
+                tailstop = 0;
+            }
+            for (int k = 0; k < tailstop; ++k) {
+                this.Tail[k].render(this.scale);
+            }
         }
-        for (int k = 0; k < tailstop; ++k) {
-            this.Tail[k].render(this.scale);
+        else
+        {
+            for(int j = 0; j<this.KirinTail.length; ++j)
+            {
+                if((isKirin && j<16) || (isGriffin && (j>15||j<13)))
+                    this.KirinTail[j].render(this.scale);
+            }
+
         }
     }
 
@@ -1481,6 +1587,13 @@ public class pm_newPonyAdv
         this.LeftWingExt = new ModelRenderer[7];
         this.RightWingExt = new ModelRenderer[7];
         this.RainbowTail = new PlaneRenderer[70];
+
+
+        this.KirinTail = new PlaneRenderer[19];
+        this.KirinHorns = new PlaneRenderer[6];
+        this.KirinMoustache = new PlaneRenderer[6];
+
+
         this.initHeadTextures();
         this.initMuzzleTextures();
         this.initBodyTextures();
@@ -1513,6 +1626,20 @@ public class pm_newPonyAdv
         }
         this.helmet = new ModelRenderer(this, 32, 0);
         this.boxList.remove(this.headpiece[2]);
+
+
+
+        //!Kirin
+        for(int i = 0; i<this.KirinHorns.length; ++i)
+            this.KirinHorns[i] = new PlaneRenderer(this,56,24);
+
+        for(int i = 0; i<this.KirinMoustache.length; ++i) {
+            this.KirinMoustache[i] = new PlaneRenderer(this, 38, 0);
+            if(i>2)
+                this.KirinMoustache[i].mirror=true;
+        }
+
+        //!End Kirin
     }
 
     protected void initMuzzleTextures() {
@@ -1542,13 +1669,13 @@ public class pm_newPonyAdv
         this.Bodypiece[3].mirrorxy = true;
         this.Bodypiece[4] = new PlaneRenderer(this, 16, 28);
         this.Bodypiece[4].mirrorxy = true;
-        this.Bodypiece[5] = new PlaneRenderer(this, 32, 0);
+        this.Bodypiece[10] = new PlaneRenderer(this, 32, 0);
         this.Bodypiece[6] = new PlaneRenderer(this, 32, 0);
         this.Bodypiece[7] = new PlaneRenderer(this, 32, 0);
         this.Bodypiece[7].mirror = true;
         this.Bodypiece[8] = new PlaneRenderer(this, 32, 0);
         this.Bodypiece[9] = new PlaneRenderer(this, 32, 0);
-        this.Bodypiece[10] = new PlaneRenderer(this, 24, 28);
+        this.Bodypiece[5] = new PlaneRenderer(this, 24, 28);
         this.BodypieceNeck[0] = new PlaneRenderer(this, 0, 16);
         this.BodypieceNeck[1] = new PlaneRenderer(this, 0, 16);
         this.BodypieceNeck[2] = new PlaneRenderer(this, 0, 16);
@@ -1633,6 +1760,29 @@ public class pm_newPonyAdv
         this.Tail[18] = new PlaneRenderer(this, 36, 4);
         this.Tail[19] = new PlaneRenderer(this, 32, 4);
         this.Tail[20] = new PlaneRenderer(this, 32, 0);
+
+
+        this.KirinTail[0] = new PlaneRenderer(this, 32,0);
+        this.KirinTail[1] = new PlaneRenderer(this, 36,0);
+        this.KirinTail[2] = new PlaneRenderer(this,34,0);
+        this.KirinTail[3] = new PlaneRenderer(this,34,0);
+        this.KirinTail[4] = new PlaneRenderer(this,34,0);
+        this.KirinTail[5] = new PlaneRenderer(this, 36,0);
+        this.KirinTail[6] = new PlaneRenderer(this,34,0);
+        this.KirinTail[7] = new PlaneRenderer(this,32,0);
+        this.KirinTail[8] = new PlaneRenderer(this,36,0);
+        this.KirinTail[9] = new PlaneRenderer(this,32,0);
+        this.KirinTail[10] = new PlaneRenderer(this,32,0);
+        this.KirinTail[11] = new PlaneRenderer(this,34,0);
+        this.KirinTail[12] = new PlaneRenderer(this,34,0);
+        this.KirinTail[13] = new PlaneRenderer(this,56,16);
+        this.KirinTail[14] = new PlaneRenderer(this,56,16);
+        this.KirinTail[15] = new PlaneRenderer(this,56,16);
+        this.KirinTail[16] = new PlaneRenderer(this,56,0);
+        this.KirinTail[17] = new PlaneRenderer(this,56,0);
+        this.KirinTail[18] = new PlaneRenderer(this,56,0);
+
+
     }
 
     protected void initWingTextures() {
@@ -1777,6 +1927,84 @@ public class pm_newPonyAdv
         this.initLeftExtManePosition(yOffset, stretch);
         this.helmet.addBox(-4.0f + this.HEAD_CENTRE_X, -4.0f + this.HEAD_CENTRE_Y, -4.0f + this.HEAD_CENTRE_Z, 8, 8, 8, stretch + 0.5f);
         this.helmet.setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
+
+        this.initKirinPositions(yOffset,stretch);
+    }
+
+    protected void initKirinPositions(float var1, float var2)
+    {
+        this.KirinHorns[0].addSidePlane(3.0f + this.HEAD_CENTRE_X, -8.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 0, 4, 6, var2);
+        this.KirinHorns[0].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinHorns[1].addSidePlane(3.2f + this.HEAD_CENTRE_X, -8.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 0, 4, 6, var2);
+        this.KirinHorns[1].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinHorns[2].addSidePlane(2.8f + this.HEAD_CENTRE_X, -8.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 0, 4, 6, var2);
+        this.KirinHorns[2].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+
+        this.KirinHorns[3].addSidePlane(-3.0f + this.HEAD_CENTRE_X, -8.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 0, 4, 6, var2);
+        this.KirinHorns[3].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinHorns[4].addSidePlane(-3.2f + this.HEAD_CENTRE_X, -8.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 0, 4, 6, var2);
+        this.KirinHorns[4].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinHorns[5].addSidePlane(-2.8f + this.HEAD_CENTRE_X, -8.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 0, 4, 6, var2);
+        this.KirinHorns[5].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+
+        this.KirinMoustache[0].addBackPlane(2.0f + this.HEAD_CENTRE_X, 2.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 2, 6, 0, var2);
+        this.KirinMoustache[0].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinMoustache[1].addBackPlane(2.0f + this.HEAD_CENTRE_X, 2.0f + this.HEAD_CENTRE_Y, -4.8f + this.HEAD_CENTRE_Z, 2, 6, 0, var2);
+        this.KirinMoustache[1].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinMoustache[2].addBackPlane(2.0f + this.HEAD_CENTRE_X, 2.0f + this.HEAD_CENTRE_Y, -4.6f + this.HEAD_CENTRE_Z, 2, 6, 0, var2);
+        this.KirinMoustache[2].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+
+        this.KirinMoustache[3].addBackPlane(-4.0f + this.HEAD_CENTRE_X, 2.0f + this.HEAD_CENTRE_Y, -5.0f + this.HEAD_CENTRE_Z, 2, 6, 0, var2);
+        this.KirinMoustache[3].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinMoustache[4].addBackPlane(-4.0f + this.HEAD_CENTRE_X, 2.0f + this.HEAD_CENTRE_Y, -4.8f + this.HEAD_CENTRE_Z, 2, 6, 0, var2);
+        this.KirinMoustache[4].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+        this.KirinMoustache[5].addBackPlane(-4.0f + this.HEAD_CENTRE_X, 2.0f + this.HEAD_CENTRE_Y, -4.6f + this.HEAD_CENTRE_Z, 2, 6, 0, var2);
+        this.KirinMoustache[5].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + var1, this.HEAD_RP_Z);
+
+        this.KirinTail[0].addBackPlane(-1f,1.5f,-3f,2,4,0,var2);
+        this.KirinTail[0].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[1].addSidePlane(1f,1.5f,-5f,0,4,2,var2);
+        this.KirinTail[1].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[2].addSidePlane(-1f,1.5f,-5f,0,4,2,var2);
+        this.KirinTail[2].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[3].addBackPlane(-1f,1.5f,-5f,2,4,0,var2);
+        this.KirinTail[3].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+
+        this.KirinTail[4].addSidePlane(1f,5.4f,1.3f,0,8,2,var2);
+        this.KirinTail[4].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[5].addSidePlane(-1f,5.4f,1.3f,0,8,2,var2);
+        this.KirinTail[5].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[6].addBackPlane(-1f,5.4f,1.3f,2,8,0,var2);
+        this.KirinTail[6].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[7].addBackPlane(-1f,5.4f,3.3f,2,8,0,var2);
+        this.KirinTail[7].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+
+        this.KirinTail[9].addBackPlane(-1f,7.9f,-8.9f,2,6,0,var2);
+        this.KirinTail[9].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[10].addSidePlane(1f,7.9f,-10.9f,0,6,2,var2);
+        this.KirinTail[10].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[11].addSidePlane(-1f,7.9f,-10.9f,0,6,2,var2);
+        this.KirinTail[11].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[12].addBackPlane(-1f,7.9f,-10.9f,2,6,0,var2);
+        this.KirinTail[12].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+
+        this.KirinTail[8].addBottomPlane(-1f,14f,-10.9f,2,0,2,var2);
+        this.KirinTail[8].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+
+        this.KirinTail[13].addSidePlane(0f,9.9f,-13.9f,0,8,8,var2);
+        this.KirinTail[13].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[14].addSidePlane(-0.2f,9.9f,-13.9f,0,8,8,var2);
+        this.KirinTail[14].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[15].addSidePlane(0.2f,9.9f,-13.9f,0,8,8,var2);
+        this.KirinTail[15].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+
+        this.KirinTail[16].addSidePlane(0f,9.9f,-13.9f,0,8,8,var2);
+        this.KirinTail[16].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[17].addSidePlane(-0.2f,9.9f,-13.9f,0,8,8,var2);
+        this.KirinTail[17].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+        this.KirinTail[18].addSidePlane(0.2f,9.9f,-13.9f,0,8,8,var2);
+        this.KirinTail[18].setRotationPoint(this.TAIL_RP_X, this.TAIL_RP_Y + var1, this.TAIL_RP_Z);
+
     }
 
     protected void initMuzzlePositions(float yOffset, float stretch) {
@@ -1825,8 +2053,8 @@ public class pm_newPonyAdv
         this.Bodypiece[3].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
         this.Bodypiece[4].addBottomPlane(-4.0f + this.BODY_CENTRE_X, 4.5f + this.BODY_CENTRE_Y, -4.6f + this.BODY_CENTRE_Z, 8, 0, 4, stretch - 0.2f);
         this.Bodypiece[4].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
-        this.Bodypiece[5].addTopPlane(-1.0f + this.BODY_CENTRE_X, 2.0f + this.BODY_CENTRE_Y, 2.0f + this.BODY_CENTRE_Z, 2, 0, 6, stretch);
-        this.Bodypiece[5].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
+        this.Bodypiece[10].addTopPlane(-1.0f + this.BODY_CENTRE_X, 2.0f + this.BODY_CENTRE_Y, 2.0f + this.BODY_CENTRE_Z, 2, 0, 6, stretch);
+        this.Bodypiece[10].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
         this.Bodypiece[6].addBottomPlane(-1.0f + this.BODY_CENTRE_X, 4.0f + this.BODY_CENTRE_Y, 2.0f + this.BODY_CENTRE_Z, 2, 0, 6, stretch);
         this.Bodypiece[6].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
         this.Bodypiece[7].addSidePlane(-1.0f + this.BODY_CENTRE_X, 2.0f + this.BODY_CENTRE_Y, 2.0f + this.BODY_CENTRE_Z, 0, 2, 6, stretch);
@@ -1835,8 +2063,8 @@ public class pm_newPonyAdv
         this.Bodypiece[8].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
         this.Bodypiece[9].addBackPlane(-1.0f + this.BODY_CENTRE_X, 2.0f + this.BODY_CENTRE_Y, 8.0f + this.BODY_CENTRE_Z, 2, 2, 0, stretch);
         this.Bodypiece[9].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
-        this.Bodypiece[10].addBottomPlane(-4.0f + this.BODY_CENTRE_X, 4.15f + this.BODY_CENTRE_Y, 1.6f + this.BODY_CENTRE_Z, 8, 0, 4, stretch - 0.2f);
-        this.Bodypiece[10].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
+        this.Bodypiece[5].addBottomPlane(-4.0f + this.BODY_CENTRE_X, 4.15f + this.BODY_CENTRE_Y, 1.6f + this.BODY_CENTRE_Z, 8, 0, 4, stretch - 0.2f);
+        this.Bodypiece[5].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
         this.BodypieceNeck[0].addBackPlane(-2.0f + this.BODY_CENTRE_X, -6.8f + this.BODY_CENTRE_Y, -8.8f + this.BODY_CENTRE_Z, 4, 4, 0, stretch);
         this.BodypieceNeck[0].setRotationPoint(this.HEAD_RP_X, this.HEAD_RP_Y + yOffset, this.HEAD_RP_Z);
         this.BodypieceNeck[1].addBackPlane(-2.0f + this.BODY_CENTRE_X, -6.8f + this.BODY_CENTRE_Y, -4.8f + this.BODY_CENTRE_Z, 4, 4, 0, stretch);

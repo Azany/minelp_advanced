@@ -6,5 +6,5 @@ public enum PonyRace {
     UNICORN,
     ALICORN,
     CHANGELING,
-    ZEBRA;
+    ZEBRA, KIRIN, GRIFFIN;
 }

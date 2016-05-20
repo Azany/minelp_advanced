@@ -44,6 +44,8 @@ public class Pony {
     private float previousFallDistance = 0.0f;
     private int skinCheckCount = 0;
     private boolean skinChecked = false;
+    public boolean isKirin = false;
+    public boolean isGriffin = false;
 
 
     public Pony(AbstractClientPlayer player) {
@@ -107,6 +109,11 @@ public class Pony {
         Color celestia = new Color(254, 249, 252, 255);
         Color zecora = new Color(208, 204, 207, 255);
         Color changeling = new Color(40, 43, 41, 255);
+
+        final Color kirin = new Color(111,222,111,255);
+        final Color griffin = new Color(130,130,130,255);
+
+
         if (flagPix.equals(applejack)) {
             this.isPony = true;
             this.isPonySkin = true;
@@ -142,6 +149,21 @@ public class Pony {
             this.isPegasus = true;
             this.isUnicorn = true;
             this.race = PonyRace.CHANGELING;
+        }
+        if (flagPix.equals(kirin)) {
+            this.isPony = true;
+            this.isPonySkin = true;
+            this.isPegasus = false;
+            this.isUnicorn = false;
+            this.isKirin=true;
+            this.race = PonyRace.KIRIN;
+        }
+        if (flagPix.equals(griffin)) {
+            this.isPony = true;
+            this.isPonySkin = true;
+            this.isPegasus = true;
+            this.isGriffin = true;
+            this.race = PonyRace.GRIFFIN;
         }
         Color tailcolor = new Color(bufferedimage.getRGB(1, 0), true);
         Color tailcolor1 = new Color(66, 88, 68, 255);

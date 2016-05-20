@@ -1,0 +1,15 @@
+{
+    "name": "minelp",
+    "mcversion": "1.7.10",
+    "version": "1710.0.0.1",
+    "revision": "185",
+    "author": "InkyQuill, Verdana, Rene_Z, Mumfrey",
+	"voxelCommonJarName": "voxelcommon-2.3.1.jar",
+    "classTransformerClasses": [
+		"com.minelittlepony.minelp.transformers.RenderPlayerTransformer",
+		"com.thevoxelbox.hdskins.asm.HDSkinsEventTransformer"
+	],
+    "description": "Mine Little Pony turns players and mobs into ponies",
+	"description.minelittlepony": "Mine Little Pony turns players and mobs into ponies",
+	"description.hdskins": "Sepаrate skin server for Mine Little Pony that also supports HD skins. Access via Skin Manager key binding (default: F1) in the main menu."
+}
